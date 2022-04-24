@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import styled from "@emotion/styled";
+
+import { UserContext } from "./App";
 
 const Menu = styled.div({
   display: "flex",
@@ -10,8 +13,11 @@ const MenuItem = styled.a({
 });
 
 function Sidebar() {
+  const { user } = useContext(UserContext);
+
   return (
     <Menu>
+      {user ? <p>Welcome {user.username}!</p> : <p>User not authenticated</p>}
       <MenuItem href="/">Home</MenuItem>
       <MenuItem>Login</MenuItem>
       <MenuItem>Signup</MenuItem>

@@ -1,4 +1,7 @@
+import { createContext, useState } from "react";
 import styled from "@emotion/styled";
+import { gql, useQuery } from "@apollo/client";
+
 import Sidebar from "./Sidebar";
 
 const AppDiv = styled.div({
@@ -6,7 +9,7 @@ const AppDiv = styled.div({
   display: "flex",
 });
 
-const Header = styled.header({
+const Content = styled.header({
   backgroundColor: "#282c34",
   minHeight: "100vh",
   display: "flex",
@@ -18,14 +21,44 @@ const Header = styled.header({
   width: "100%",
 });
 
+interface UserContextProps {
+  user: User | null;
+}
+
+export const UserContext = createContext({} as UserContextProps);
+
+const GET_LOGGED_USER = gql`
+  query GetLoggedUser {
+    user: verify {
+      id
+      username
+    }
+  }
+`;
+
+interface User {
+  id: string;
+  username: string;
+}
+
 function App() {
+  const [loggedUser, setLoggedUser] = useState<User | null>(null);
+
+  const { loading } = useQuery(GET_LOGGED_USER, {
+    onCompleted: (data) => setLoggedUser(data.user),
+  });
+
+  if (loading) return null;
+
   return (
-    <AppDiv>
-      <Sidebar />
-      <Header>
-        <p>Welcome to Football Manager</p>
-      </Header>
-    </AppDiv>
+    <UserContext.Provider value={{ user: loggedUser }}>
+      <AppDiv>
+        <Sidebar />
+        <Content>
+          <p>Welcome to Football Manager</p>
+        </Content>
+      </AppDiv>
+    </UserContext.Provider>
   );
 }
 
