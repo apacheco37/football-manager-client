@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "@emotion/styled";
 
-import { UserContext } from "./App";
+import { UserContext } from "../App";
 
 const Menu = styled.div({
   display: "flex",
@@ -9,7 +9,7 @@ const Menu = styled.div({
 });
 
 const MenuItem = styled.a({
-  padding: "1rem",
+  margin: "1rem",
 });
 
 function Sidebar() {

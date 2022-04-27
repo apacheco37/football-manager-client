@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, Dispatch, useState } from "react";
 import styled from "@emotion/styled";
 import { gql, useQuery } from "@apollo/client";
 
-import Sidebar from "./Sidebar";
+import Sidebar from "./components/Sidebar";
+import Login from "./components/Login";
 
 const AppDiv = styled.div({
   textAlign: "center",
@@ -23,6 +24,7 @@ const Content = styled.header({
 
 interface UserContextProps {
   user: User | null;
+  setUser: Dispatch<React.SetStateAction<User | null>>;
 }
 
 export const UserContext = createContext({} as UserContextProps);
@@ -51,11 +53,12 @@ function App() {
   if (loading) return null;
 
   return (
-    <UserContext.Provider value={{ user: loggedUser }}>
+    <UserContext.Provider value={{ user: loggedUser, setUser: setLoggedUser }}>
       <AppDiv>
         <Sidebar />
         <Content>
           <p>Welcome to Football Manager</p>
+          <Login />
         </Content>
       </AppDiv>
     </UserContext.Provider>
