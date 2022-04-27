@@ -2,7 +2,7 @@ import { FormEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
 import { gql, useMutation } from "@apollo/client";
 
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 
 const Form = styled.form({
   display: "flex",

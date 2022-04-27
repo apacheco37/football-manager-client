@@ -4,8 +4,10 @@ import { gql, useQuery } from "@apollo/client";
 import { Route, Routes } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
-import Login from "./components/Login";
+import Login from "./components/auth/Login";
 import Home from "./components/Home";
+import Signup from "./components/auth/Signup";
+import PlayerList from "./components/player/PlayerList";
 
 const AppDiv = styled.div({
   textAlign: "center",
@@ -62,6 +64,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/players" element={<PlayerList />} />
           </Routes>
         </Content>
       </AppDiv>

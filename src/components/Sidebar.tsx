@@ -16,18 +16,47 @@ const MenuItem = styled.p({
 function Sidebar() {
   const { user } = useContext(UserContext);
 
+  const notLoggedUserOptions = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "Login",
+      link: "/login",
+    },
+    {
+      name: "Signup",
+      link: "/signup",
+    },
+  ];
+  const loggedUserOptions = [
+    {
+      name: "Dashboard",
+      link: "/dashboard",
+    },
+    {
+      name: "Players",
+      link: "/players",
+    },
+  ];
+
+  const menuItems = user
+    ? loggedUserOptions.map((option, index) => (
+        <MenuItem key={index}>
+          <Link to={option.link}>{option.name}</Link>
+        </MenuItem>
+      ))
+    : notLoggedUserOptions.map((option, index) => (
+        <MenuItem key={index}>
+          <Link to={option.link}>{option.name}</Link>
+        </MenuItem>
+      ));
+
   return (
     <Menu>
       {user ? <p>Welcome {user.username}!</p> : <p>User not authenticated</p>}
-      <MenuItem>
-        <Link to="/">Home</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/login">Login</Link>
-      </MenuItem>
-      <MenuItem>
-        <Link to="/signup">Signup</Link>
-      </MenuItem>
+      {menuItems}
     </Menu>
   );
 }
