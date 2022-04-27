@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 import { UserContext } from "../App";
 
@@ -8,7 +9,7 @@ const Menu = styled.div({
   flexDirection: "column",
 });
 
-const MenuItem = styled.a({
+const MenuItem = styled.p({
   margin: "1rem",
 });
 
@@ -18,9 +19,15 @@ function Sidebar() {
   return (
     <Menu>
       {user ? <p>Welcome {user.username}!</p> : <p>User not authenticated</p>}
-      <MenuItem href="/">Home</MenuItem>
-      <MenuItem>Login</MenuItem>
-      <MenuItem>Signup</MenuItem>
+      <MenuItem>
+        <Link to="/">Home</Link>
+      </MenuItem>
+      <MenuItem>
+        <Link to="/login">Login</Link>
+      </MenuItem>
+      <MenuItem>
+        <Link to="/signup">Signup</Link>
+      </MenuItem>
     </Menu>
   );
 }

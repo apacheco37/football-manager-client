@@ -6,6 +6,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
+import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
@@ -23,7 +24,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

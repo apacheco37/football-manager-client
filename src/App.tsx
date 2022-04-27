@@ -1,9 +1,11 @@
 import { createContext, Dispatch, useState } from "react";
 import styled from "@emotion/styled";
 import { gql, useQuery } from "@apollo/client";
+import { Route, Routes } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
+import Home from "./components/Home";
 
 const AppDiv = styled.div({
   textAlign: "center",
@@ -57,8 +59,10 @@ function App() {
       <AppDiv>
         <Sidebar />
         <Content>
-          <p>Welcome to Football Manager</p>
-          <Login />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
         </Content>
       </AppDiv>
     </UserContext.Provider>
