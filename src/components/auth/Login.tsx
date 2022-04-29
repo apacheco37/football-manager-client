@@ -1,6 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
 import { gql, useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../App";
 
@@ -29,6 +30,7 @@ function Login() {
   });
   const [login] = useMutation(LOGIN);
   const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   // What the fuck should be this type, React types have wrong target type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,7 +47,12 @@ function Login() {
       variables: {
         loginInput: formData,
       },
-      onCompleted: (data) => setUser(data.user),
+      onCompleted: (data) => {
+        if (data.user) {
+          setUser(data.user);
+          navigate(`/players`, { replace: true });
+        }
+      },
     });
   }
 
