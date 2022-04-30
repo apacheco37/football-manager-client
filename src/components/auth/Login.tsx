@@ -19,6 +19,10 @@ const LOGIN = gql`
     user: login(input: $loginInput) {
       id
       username
+      team {
+        id
+        name
+      }
     }
   }
 `;
@@ -50,7 +54,7 @@ function Login() {
       onCompleted: (data) => {
         if (data.user) {
           setUser(data.user);
-          navigate(`/players`, { replace: true });
+          navigate(`/dashboard`, { replace: true });
         }
       },
     });

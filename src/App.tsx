@@ -34,6 +34,10 @@ const GET_LOGGED_USER = gql`
     user: verify {
       id
       username
+      team {
+        id
+        name
+      }
     }
   }
 `;
@@ -41,6 +45,12 @@ const GET_LOGGED_USER = gql`
 interface User {
   id: string;
   username: string;
+  team: Team | null;
+}
+
+interface Team {
+  id: string;
+  name: string;
 }
 
 function App() {
