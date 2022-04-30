@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 
 const GET_PLAYERS = gql`
@@ -60,7 +61,9 @@ function PlayerList() {
   const tableRows = data?.players.map((player) => (
     <tr key={player.id}>
       <td>
-        {player.firstName} {player.lastName}
+        <Link to={player.id}>
+          {player.firstName} {player.lastName}
+        </Link>
       </td>
       <td>{player.age}</td>
       <td>{player.talent}</td>
