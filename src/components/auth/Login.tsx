@@ -1,9 +1,10 @@
 import { FormEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../App";
+import { Login_LoginDocument } from "../../graphql-generated";
 
 const Form = styled.form({
   display: "flex",
@@ -14,25 +15,12 @@ const FormItem = styled.label({
   margin: "1rem",
 });
 
-const LOGIN = gql`
-  mutation Login($loginInput: LoginInput!) {
-    user: login(input: $loginInput) {
-      id
-      username
-      team {
-        id
-        name
-      }
-    }
-  }
-`;
-
 function Login() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-  const [login] = useMutation(LOGIN);
+  const [login] = useMutation(Login_LoginDocument);
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 

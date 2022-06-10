@@ -1,48 +1,22 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
-
-const GET_PLAYERS = gql`
-  query Players($teamID: ID!) {
-    players(teamID: $teamID) {
-      id
-      firstName
-      lastName
-      age
-      talent
-      attacker
-      midfielder
-      defender
-      goalkeeper
-    }
-  }
-`;
-
-interface QueryPlayersResponse {
-  players: Player[];
-}
-
-interface Player {
-  id: string;
-  firstName: string;
-  lastName: string;
-  age: number;
-  talent: number;
-  attacker: number;
-  midfielder: number;
-  defender: number;
-  goalkeeper: number;
-}
+import { PlayerList_PlayersDocument } from "../../graphql-generated";
 
 function PlayerList() {
   const { user } = useContext(UserContext);
 
-  const { loading, data } = useQuery<QueryPlayersResponse>(GET_PLAYERS, {
-    variables: {
-      teamID: user?.team?.id,
-    },
-  });
+  const { loading, data } = useQuery(
+    PlayerList_PlayersDocument,
+    user?.team?.id
+      ? {
+          variables: {
+            teamID: user.team.id,
+          },
+        }
+      : { skip: true }
+  );
 
   if (loading) return null;
 

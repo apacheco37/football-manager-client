@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "prettier:fix": "prettier --write .",
-    "prettier:check": "prettier --check ."
+    "prettier:check": "prettier --check .",
+    "gql-types:generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
@@ -19,6 +20,10 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.6.2",
+    "@graphql-codegen/typed-document-node": "^2.2.12",
+    "@graphql-codegen/typescript": "2.5.0",
+    "@graphql-codegen/typescript-operations": "2.4.1",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.20.0",

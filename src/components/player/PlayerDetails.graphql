@@ -1,0 +1,12 @@
+query PlayerDetails_Player($id: ID!) {
+  player(id: $id) {
+    firstName
+    lastName
+    age
+    talent
+    attacker
+    midfielder
+    defender
+    goalkeeper
+  }
+}

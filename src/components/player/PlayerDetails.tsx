@@ -1,45 +1,18 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
-
-const GET_PLAYER = gql`
-  query Player($id: ID!) {
-    player(id: $id) {
-      firstName
-      lastName
-      age
-      talent
-      attacker
-      midfielder
-      defender
-      goalkeeper
-    }
-  }
-`;
-
-interface QueryPlayerResponse {
-  player: Player;
-}
-
-interface Player {
-  firstName: string;
-  lastName: string;
-  age: number;
-  talent: number;
-  attacker: number;
-  midfielder: number;
-  defender: number;
-  goalkeeper: number;
-}
+import { PlayerDetails_PlayerDocument } from "../../graphql-generated";
 
 function PlayerDetails() {
-  const params = useParams();
-  const { loading, data: { player } = {} } = useQuery<QueryPlayerResponse>(
-    GET_PLAYER,
-    {
-      variables: {
-        id: params.playerID,
-      },
-    }
+  const { playerID } = useParams();
+  const { loading, data: { player } = {} } = useQuery(
+    PlayerDetails_PlayerDocument,
+    playerID
+      ? {
+          variables: {
+            id: playerID,
+          },
+        }
+      : { skip: true }
   );
 
   if (loading) return null;
