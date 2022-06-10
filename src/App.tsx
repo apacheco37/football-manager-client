@@ -1,9 +1,10 @@
 import { createContext, Dispatch, useState } from "react";
 import styled from "@emotion/styled";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 import AppRouting from "./AppRouting";
 import Sidebar from "./components/Sidebar";
+import { App_GetLoggedUserDocument } from "./graphql-generated";
 
 const AppDiv = styled.div({
   textAlign: "center",
@@ -29,19 +30,6 @@ interface UserContextProps {
 
 export const UserContext = createContext({} as UserContextProps);
 
-const GET_LOGGED_USER = gql`
-  query GetLoggedUser {
-    user: verify {
-      id
-      username
-      team {
-        id
-        name
-      }
-    }
-  }
-`;
-
 interface User {
   id: string;
   username: string;
@@ -56,7 +44,7 @@ interface Team {
 function App() {
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
 
-  const { loading } = useQuery(GET_LOGGED_USER, {
+  const { loading } = useQuery(App_GetLoggedUserDocument, {
     onCompleted: (data) => setLoggedUser(data.user),
   });
 

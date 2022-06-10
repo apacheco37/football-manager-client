@@ -1,0 +1,10 @@
+query App_GetLoggedUser {
+  user: verify {
+    id
+    username
+    team {
+      id
+      name
+    }
+  }
+}

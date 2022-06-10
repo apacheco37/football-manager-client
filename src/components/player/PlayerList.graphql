@@ -1,0 +1,13 @@
+query PlayerList_Players($teamID: ID!) {
+  players(teamID: $teamID) {
+    id
+    firstName
+    lastName
+    age
+    talent
+    attacker
+    midfielder
+    defender
+    goalkeeper
+  }
+}
