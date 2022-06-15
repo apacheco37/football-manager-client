@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { UserContext } from "../App";
 
@@ -39,17 +39,37 @@ function Sidebar() {
       name: "Players",
       link: "/players",
     },
+    {
+      name: "Matches",
+      link: "/matches",
+    },
   ];
 
   const menuItems = user
     ? loggedUserOptions.map((option, index) => (
         <MenuItem key={index}>
-          <Link to={option.link}>{option.name}</Link>
+          <NavLink
+            to={option.link}
+            style={({ isActive }) => ({
+              fontWeight: isActive ? "bold" : "normal",
+              textDecoration: "none",
+            })}
+          >
+            {option.name}
+          </NavLink>
         </MenuItem>
       ))
     : notLoggedUserOptions.map((option, index) => (
         <MenuItem key={index}>
-          <Link to={option.link}>{option.name}</Link>
+          <NavLink
+            to={option.link}
+            style={({ isActive }) => ({
+              fontWeight: isActive ? "bold" : "normal",
+              textDecoration: "none",
+            })}
+          >
+            {option.name}
+          </NavLink>
         </MenuItem>
       ));
 

@@ -1,0 +1,17 @@
+query MatchList_TeamMatches($teamID: ID!) {
+  team(id: $teamID) {
+    matches {
+      id
+      homeTeam {
+        name
+      }
+      awayTeam {
+        name
+      }
+      events {
+        type
+        team
+      }
+    }
+  }
+}
