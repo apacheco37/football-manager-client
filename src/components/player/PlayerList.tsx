@@ -1,8 +1,13 @@
 import { useQuery } from "@apollo/client";
+import styled from "@emotion/styled";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import { PlayerList_PlayersDocument } from "../../graphql-generated";
+
+const PlayersTable = styled.tbody({
+  borderSpacing: "1rem",
+});
 
 function PlayerList() {
   const { user } = useContext(UserContext);
@@ -49,9 +54,9 @@ function PlayerList() {
   ));
 
   return (
-    <table>
+    <PlayersTable>
       {tableHeader} {tableRows}
-    </table>
+    </PlayersTable>
   );
 }
 
