@@ -11,8 +11,12 @@ const Form = styled.form({
   flexDirection: "column",
 });
 
-const FormItem = styled.label({
+const FormLabel = styled.label({
   margin: "1rem",
+});
+
+const SubmitButton = styled.button({
+  marginTop: "2rem",
 });
 
 function Login() {
@@ -50,25 +54,21 @@ function Login() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormItem>
-        Username:
-        <input
-          type="text"
-          value={formData.username}
-          name="username"
-          onChange={handleFormInputChange}
-        />
-      </FormItem>
-      <FormItem>
-        Password:
-        <input
-          type="password"
-          value={formData.password}
-          name="password"
-          onChange={handleFormInputChange}
-        />
-      </FormItem>
-      <button type="submit">Submit</button>
+      <FormLabel>Username:</FormLabel>
+      <input
+        type="text"
+        value={formData.username}
+        name="username"
+        onChange={handleFormInputChange}
+      />
+      <FormLabel>Password:</FormLabel>
+      <input
+        type="password"
+        value={formData.password}
+        name="password"
+        onChange={handleFormInputChange}
+      />
+      <SubmitButton type="submit">Log In</SubmitButton>
     </Form>
   );
 }
