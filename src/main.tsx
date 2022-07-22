@@ -12,7 +12,7 @@ import "./index.css";
 import App from "./App";
 
 const link = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: import.meta.env.VITE_SERVER_URI,
   credentials: "include",
 });
 
