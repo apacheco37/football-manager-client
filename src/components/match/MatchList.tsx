@@ -9,7 +9,7 @@ import {
   MatchTeam,
 } from "../../graphql-generated";
 
-const Table = styled.table({
+const Table = styled.tbody({
   borderCollapse: "separate",
   borderSpacing: "2rem",
 });

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:beta": "tsc && vite build --mode beta",
     "preview": "vite preview",
     "lint": "eslint .",
     "prettier:fix": "prettier --write .",
