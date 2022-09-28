@@ -1,3 +1,4 @@
+import { Typography } from "antd";
 import { useContext } from "react";
 import { UserContext } from "../App";
 
@@ -6,10 +7,10 @@ function Dashboard() {
 
   return (
     <>
-      <h2>{user?.team?.name}</h2>
-      <p>
+      <Typography.Title level={3}>{user?.team?.name}</Typography.Title>
+      <Typography.Text>
         Managed by <i>{user?.username}</i>
-      </p>
+      </Typography.Text>
     </>
   );
 }

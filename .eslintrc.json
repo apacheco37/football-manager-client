@@ -8,6 +8,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -25,6 +26,11 @@
     }
   },
   "rules": {
-    "prettier/prettier": "warn"
+    "prettier/prettier": [
+      "warn",
+      {
+        "trailingComma": "es5"
+      }
+    ]
   }
 }

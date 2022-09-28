@@ -1,13 +1,15 @@
 import { useQuery } from "@apollo/client";
-import styled from "@emotion/styled";
-import { useContext } from "react";
+import { Table } from "antd";
+import { ColumnsType } from "antd/lib/table";
+import { useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
-import { PlayerList_PlayersDocument } from "../../graphql-generated";
+import {
+  PlayerList_PlayersDocument,
+  PlayerList_PlayersQuery,
+} from "../../graphql-generated";
 
-const PlayersTable = styled.tbody({
-  borderSpacing: "1rem",
-});
+type PlayerType = PlayerList_PlayersQuery["players"][number];
 
 function PlayerList() {
   const { user } = useContext(UserContext);
@@ -23,40 +25,33 @@ function PlayerList() {
       : { skip: true }
   );
 
-  if (loading) return null;
-
-  const tableHeader = (
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Talent</th>
-      <th>Attacker</th>
-      <th>Midfielder</th>
-      <th>Defender</th>
-      <th>Goalkeeper</th>
-    </tr>
+  const columns: ColumnsType<PlayerType> = useMemo(
+    () => [
+      {
+        key: "name",
+        title: "Name",
+        render: (_, { id, firstName, lastName }) => (
+          <Link to={id}>{`${firstName} ${lastName}`}</Link>
+        ),
+      },
+      { dataIndex: "age", title: "Age" },
+      { dataIndex: "talent", title: "Talent" },
+      { dataIndex: "attacker", title: "Attacker" },
+      { dataIndex: "midfielder", title: "Midfielder" },
+      { dataIndex: "defender", title: "Defender" },
+      { dataIndex: "goalkeeper", title: "Goalkeeper" },
+    ],
+    []
   );
 
-  const tableRows = data?.players.map((player) => (
-    <tr key={player.id}>
-      <td>
-        <Link to={player.id}>
-          {player.firstName} {player.lastName}
-        </Link>
-      </td>
-      <td>{player.age}</td>
-      <td>{player.talent}</td>
-      <td>{player.attacker}</td>
-      <td>{player.midfielder}</td>
-      <td>{player.defender}</td>
-      <td>{player.goalkeeper}</td>
-    </tr>
-  ));
+  if (loading) return null;
 
   return (
-    <PlayersTable>
-      {tableHeader} {tableRows}
-    </PlayersTable>
+    <Table
+      dataSource={data?.players}
+      columns={columns}
+      rowKey={(record) => record.id}
+    />
   );
 }
 

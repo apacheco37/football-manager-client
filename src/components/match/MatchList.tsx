@@ -1,18 +1,19 @@
 import { useQuery } from "@apollo/client";
-import styled from "@emotion/styled";
-import { useContext } from "react";
+import { Table } from "antd";
+import { ColumnsType } from "antd/lib/table";
+import { useContext, useMemo } from "react";
 
 import { UserContext } from "../../App";
 import {
   MatchEventType,
   MatchList_TeamMatchesDocument,
+  MatchList_TeamMatchesQuery,
   MatchTeam,
 } from "../../graphql-generated";
 
-const Table = styled.tbody({
-  borderCollapse: "separate",
-  borderSpacing: "2rem",
-});
+type MatchType = NonNullable<
+  MatchList_TeamMatchesQuery["team"]
+>["matches"][number];
 
 function MatchList() {
   const { user } = useContext(UserContext);
@@ -28,44 +29,44 @@ function MatchList() {
       : { skip: true }
   );
 
-  if (loading) return null;
-
-  const tableHeader = (
-    <tr>
-      <th>Home Team</th>
-      <th>Score</th>
-      <th>Away Team</th>
-    </tr>
+  const columns: ColumnsType<MatchType> = useMemo(
+    () => [
+      { dataIndex: ["homeTeam", "name"], title: "Home Team" },
+      {
+        key: "score",
+        title: "Score",
+        render: (_, match) =>
+          `${match.events.reduce(
+            (previousValue, event) =>
+              event.type === MatchEventType.Goal &&
+              event.team === MatchTeam.Home
+                ? ++previousValue
+                : previousValue,
+            0
+          )} - ${match.events.reduce(
+            (previousValue, event) =>
+              event.type === MatchEventType.Goal &&
+              event.team === MatchTeam.Away
+                ? ++previousValue
+                : previousValue,
+            0
+          )}`,
+      },
+      { dataIndex: ["awayTeam", "name"], title: "Away Team" },
+    ],
+    []
   );
 
-  const tableRows = data?.team?.matches.map((match) => (
-    <tr key={match.id}>
-      <td>{match.homeTeam.name}</td>
-      <td>
-        {match.events.reduce(
-          (previousValue, event) =>
-            event.type === MatchEventType.Goal && event.team === MatchTeam.Home
-              ? ++previousValue
-              : previousValue,
-          0
-        )}
-        {" - "}
-        {match.events.reduce(
-          (previousValue, event) =>
-            event.type === MatchEventType.Goal && event.team === MatchTeam.Away
-              ? ++previousValue
-              : previousValue,
-          0
-        )}
-      </td>
-      <td>{match.awayTeam.name}</td>
-    </tr>
-  ));
+  if (loading) return null;
 
   return (
-    <Table>
-      {tableHeader} {tableRows}
-    </Table>
+    data?.team && (
+      <Table
+        dataSource={data.team.matches}
+        columns={columns}
+        rowKey={(record) => record.id}
+      ></Table>
+    )
   );
 }
 

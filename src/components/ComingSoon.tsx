@@ -1,5 +1,7 @@
+import { Typography } from "antd";
+
 function ComingSoon() {
-  return <h2>Coming Soon!</h2>;
+  return <Typography.Title level={2}>Coming Soon!</Typography.Title>;
 }
 
 export default ComingSoon;

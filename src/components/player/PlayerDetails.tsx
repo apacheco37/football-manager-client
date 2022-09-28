@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { Space, Typography } from "antd";
 import { useParams } from "react-router-dom";
 import { PlayerDetails_PlayerDocument } from "../../graphql-generated";
 
@@ -18,20 +19,20 @@ function PlayerDetails() {
   if (loading) return null;
 
   return player ? (
-    <div>
-      <h2>
-        {player.firstName} {player.lastName}
-      </h2>
-      <p>Age: {player.age}</p>
-      <p>Talent: {player.talent}</p>
-      <p>
+    <Space direction="vertical">
+      <Typography.Title level={2}>
+        {`${player.firstName} ${player.lastName}`}
+      </Typography.Title>
+      <Typography.Text>Age: {player.age}</Typography.Text>
+      <Typography.Text>Talent: {player.talent}</Typography.Text>
+      <Typography.Text>
         <b>Skills:</b>
-      </p>
-      <p>Attacker: {player.attacker}</p>
-      <p>Midfielder: {player.midfielder}</p>
-      <p>Defender: {player.defender}</p>
-      <p>Goalkeeper: {player.goalkeeper}</p>
-    </div>
+      </Typography.Text>
+      <Typography.Text>Attacker: {player.attacker}</Typography.Text>
+      <Typography.Text>Midfielder: {player.midfielder}</Typography.Text>
+      <Typography.Text>Defender: {player.defender}</Typography.Text>
+      <Typography.Text>Goalkeeper: {player.goalkeeper}</Typography.Text>
+    </Space>
   ) : null;
 }
 
