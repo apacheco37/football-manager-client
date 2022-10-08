@@ -43,15 +43,13 @@ function MatchList() {
 
   if (loading) return null;
 
-  return (
-    data?.team && (
-      <Table
-        dataSource={data.team.matches}
-        columns={columns}
-        rowKey={(record) => record.id}
-      ></Table>
-    )
-  );
+  return data?.team ? (
+    <Table
+      dataSource={data.team.matches}
+      columns={columns}
+      rowKey={(record) => record.id}
+    />
+  ) : null;
 }
 
 export default MatchList;
