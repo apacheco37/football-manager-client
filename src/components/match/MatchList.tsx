@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 import { useContext, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 import { UserContext } from "../../App";
 import {
@@ -33,8 +34,9 @@ function MatchList() {
       {
         key: "score",
         title: "Score",
-        render: (_, match) =>
-          `${match.summary.homeGoals} - ${match.summary.awayGoals}`,
+        render: (_, { id, summary }) => (
+          <Link to={id}>{`${summary.homeGoals} - ${summary.awayGoals}`}</Link>
+        ),
       },
       { dataIndex: ["awayTeam", "name"], title: "Away Team" },
     ],
