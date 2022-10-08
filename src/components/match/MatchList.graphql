@@ -12,6 +12,12 @@ query MatchList_TeamMatches($teamID: ID!) {
         type
         team
       }
+      summary {
+        homeGoals
+        awayGoals
+        homeCards
+        awayCards
+      }
     }
   }
 }

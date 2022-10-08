@@ -5,10 +5,8 @@ import { useContext, useMemo } from "react";
 
 import { UserContext } from "../../App";
 import {
-  MatchEventType,
   MatchList_TeamMatchesDocument,
   MatchList_TeamMatchesQuery,
-  MatchTeam,
 } from "../../graphql-generated";
 
 type MatchType = NonNullable<
@@ -36,21 +34,7 @@ function MatchList() {
         key: "score",
         title: "Score",
         render: (_, match) =>
-          `${match.events.reduce(
-            (previousValue, event) =>
-              event.type === MatchEventType.Goal &&
-              event.team === MatchTeam.Home
-                ? ++previousValue
-                : previousValue,
-            0
-          )} - ${match.events.reduce(
-            (previousValue, event) =>
-              event.type === MatchEventType.Goal &&
-              event.team === MatchTeam.Away
-                ? ++previousValue
-                : previousValue,
-            0
-          )}`,
+          `${match.summary.homeGoals} - ${match.summary.awayGoals}`,
       },
       { dataIndex: ["awayTeam", "name"], title: "Away Team" },
     ],
