@@ -4,7 +4,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
-import MatchDetails from "./components/match/MatchDetails";
+import MatchDetails from "./components/match/MatchDetails/MatchDetails";
 import MatchList from "./components/match/MatchList";
 import PlayerDetails from "./components/player/PlayerDetails";
 import PlayerList from "./components/player/PlayerList";
