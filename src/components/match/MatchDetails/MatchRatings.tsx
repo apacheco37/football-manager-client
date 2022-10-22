@@ -14,7 +14,7 @@ interface Props {
   awayRatings: Ratings;
 }
 
-function MatchRatings({
+export default function MatchRatings({
   homeTeamName,
   awayTeamName,
   homeRatings,
@@ -28,8 +28,6 @@ function MatchRatings({
     </Space>
   );
 }
-
-export default MatchRatings;
 
 function TeamRatings({
   teamName,

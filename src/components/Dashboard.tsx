@@ -2,7 +2,7 @@ import { Typography } from "antd";
 import { useContext } from "react";
 import { UserContext } from "../App";
 
-function Dashboard() {
+export default function Dashboard() {
   const { user } = useContext(UserContext);
 
   return (
@@ -14,5 +14,3 @@ function Dashboard() {
     </>
   );
 }
-
-export default Dashboard;

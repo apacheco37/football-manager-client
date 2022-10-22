@@ -3,7 +3,7 @@ import { Space, Typography } from "antd";
 import { useParams } from "react-router-dom";
 import { PlayerDetails_PlayerDocument } from "../../graphql-generated";
 
-function PlayerDetails() {
+export default function PlayerDetails() {
   const { playerID } = useParams();
   const { loading, data: { player } = {} } = useQuery(
     PlayerDetails_PlayerDocument,
@@ -35,5 +35,3 @@ function PlayerDetails() {
     </Space>
   ) : null;
 }
-
-export default PlayerDetails;

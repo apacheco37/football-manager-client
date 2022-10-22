@@ -1,7 +1,5 @@
 import ComingSoon from "../ComingSoon";
 
-function Signup() {
+export default function Signup() {
   return <ComingSoon />;
 }
-
-export default Signup;

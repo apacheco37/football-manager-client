@@ -1,7 +1,5 @@
 import { Typography } from "antd";
 
-function Home() {
+export default function Home() {
   return <Typography.Title>Welcome to Football Manager</Typography.Title>;
 }
-
-export default Home;

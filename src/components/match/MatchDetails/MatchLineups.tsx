@@ -16,7 +16,7 @@ interface Props {
   awayLineup: Lineup;
 }
 
-function MatchLineup({
+export default function MatchLineup({
   homeTeamName,
   awayTeamName,
   homeLineup,
@@ -30,8 +30,6 @@ function MatchLineup({
     </Space>
   );
 }
-
-export default MatchLineup;
 
 function TeamLineup({
   teamName,

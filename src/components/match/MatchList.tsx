@@ -14,7 +14,7 @@ type MatchType = NonNullable<
   MatchList_TeamMatchesQuery["team"]
 >["matches"][number];
 
-function MatchList() {
+export default function MatchList() {
   const { user } = useContext(UserContext);
 
   const { loading, data } = useQuery(
@@ -53,5 +53,3 @@ function MatchList() {
     />
   ) : null;
 }
-
-export default MatchList;

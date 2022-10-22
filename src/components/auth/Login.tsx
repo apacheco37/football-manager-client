@@ -17,7 +17,7 @@ interface FormFields {
   password: string;
 }
 
-function Login() {
+export default function Login() {
   const [login] = useMutation(Login_LoginDocument);
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -66,5 +66,3 @@ function Login() {
     </StyledForm>
   );
 }
-
-export default Login;

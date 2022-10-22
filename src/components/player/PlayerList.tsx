@@ -11,7 +11,7 @@ import {
 
 type PlayerType = PlayerList_PlayersQuery["players"][number];
 
-function PlayerList() {
+export default function PlayerList() {
   const { user } = useContext(UserContext);
 
   const { loading, data } = useQuery(
@@ -54,5 +54,3 @@ function PlayerList() {
     />
   );
 }
-
-export default PlayerList;

@@ -11,7 +11,7 @@ const StyledText = styled(Typography.Text)({
   margin: "1rem",
 });
 
-function Sidebar() {
+export default function Sidebar() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -60,5 +60,3 @@ function Sidebar() {
     </>
   );
 }
-
-export default Sidebar;

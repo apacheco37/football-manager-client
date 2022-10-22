@@ -19,7 +19,7 @@ const StyledTitle = styled(Typography.Title)({
   margin: "0 !important",
 });
 
-function MatchDetails() {
+export default function MatchDetails() {
   const { matchID } = useParams();
 
   const { loading, data: { match } = {} } = useQuery(
@@ -117,5 +117,3 @@ function MatchDetails() {
     </>
   );
 }
-
-export default MatchDetails;

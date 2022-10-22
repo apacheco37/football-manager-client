@@ -15,7 +15,11 @@ interface Props {
   events: Event[];
 }
 
-function MatchEvents({ homeTeamName, awayTeamName, events }: Props) {
+export default function MatchEvents({
+  homeTeamName,
+  awayTeamName,
+  events,
+}: Props) {
   return (
     <Space direction="vertical">
       {events.map((event, index) => (
@@ -30,8 +34,6 @@ function MatchEvents({ homeTeamName, awayTeamName, events }: Props) {
     </Space>
   );
 }
-
-export default MatchEvents;
 
 function Event({
   homeTeamName,
