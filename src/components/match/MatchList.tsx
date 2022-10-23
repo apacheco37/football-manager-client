@@ -4,7 +4,7 @@ import { ColumnsType } from "antd/lib/table";
 import { useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
 
-import { UserContext } from "../../App";
+import UserContext from "../../contexts/UserContext";
 import {
   MatchList_TeamMatchesDocument,
   MatchList_TeamMatchesQuery,

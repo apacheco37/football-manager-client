@@ -1,4 +1,4 @@
-import { createContext, Dispatch, useState } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { useQuery } from "@apollo/client";
 import { Layout } from "antd";
@@ -6,6 +6,7 @@ import { Layout } from "antd";
 import AppRouting from "./AppRouting";
 import Sidebar from "./components/Sidebar";
 import { App_GetLoggedUserDocument } from "./graphql-generated";
+import UserContext, { User } from "./contexts/UserContext";
 
 const { Content, Sider } = Layout;
 
@@ -34,25 +35,7 @@ const StyledContent = styled(Content)({
 //   width: "100%",
 // });
 
-interface UserContextProps {
-  user: User | null;
-  setUser: Dispatch<React.SetStateAction<User | null>>;
-}
-
-export const UserContext = createContext({} as UserContextProps);
-
-interface User {
-  id: string;
-  username: string;
-  team: Team | null;
-}
-
-interface Team {
-  id: string;
-  name: string;
-}
-
-function App() {
+export default function App() {
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -75,5 +58,3 @@ function App() {
     </UserContext.Provider>
   );
 }
-
-export default App;
