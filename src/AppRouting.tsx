@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
-import Login from "./components/auth/Login";
-import Signup from "./components/auth/Signup";
+import Login from "./routes/login/Login";
+import Signup from "./routes/signup/Signup";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import MatchDetails from "./components/match/MatchDetails/MatchDetails";
