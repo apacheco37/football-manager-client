@@ -6,9 +6,9 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 import { MatchDetails_MatchDetailsDocument } from "../../../graphql-generated";
-import MatchEvents from "./MatchEvents";
-import MatchLineup from "./MatchLineups";
-import MatchRatings from "./MatchRatings";
+import MatchEvents from "../../../components/match/MatchEvents";
+import MatchLineup from "../../../components/match/MatchLineups";
+import MatchRatings from "../../../components/match/MatchRatings";
 
 const StyledSpace = styled(Space)({
   display: "flex",
