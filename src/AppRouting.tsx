@@ -6,8 +6,7 @@ import Dashboard from "./routes/dashboard/Dashboard";
 import Home from "./routes/home/Home";
 import MatchDetails from "./components/match/MatchDetails/MatchDetails";
 import MatchList from "./components/match/MatchList";
-import PlayerDetails from "./components/player/PlayerDetails";
-import PlayerList from "./components/player/PlayerList";
+import PlayersRouting from "./routes/players/PlayersRouting";
 
 function AppRouting() {
   return (
@@ -16,8 +15,7 @@ function AppRouting() {
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route path="dashboard" element={<Dashboard />} />
-      <Route path="players" element={<PlayerList />} />
-      <Route path="players/:playerID" element={<PlayerDetails />} />
+      <Route path="players/*" element={<PlayersRouting />} />
       <Route path="matches" element={<MatchList />} />
       <Route path="matches/:matchID" element={<MatchDetails />} />
     </Routes>
