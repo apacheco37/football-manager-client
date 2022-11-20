@@ -4,9 +4,8 @@ import Login from "./routes/login/Login";
 import Signup from "./routes/signup/Signup";
 import Dashboard from "./routes/dashboard/Dashboard";
 import Home from "./routes/home/Home";
-import MatchDetails from "./components/match/MatchDetails/MatchDetails";
-import MatchList from "./components/match/MatchList";
 import PlayersRouting from "./routes/players/PlayersRouting";
+import MatchesRouting from "./routes/matches/MatchesRouting";
 
 function AppRouting() {
   return (
@@ -16,8 +15,7 @@ function AppRouting() {
       <Route path="signup" element={<Signup />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="players/*" element={<PlayersRouting />} />
-      <Route path="matches" element={<MatchList />} />
-      <Route path="matches/:matchID" element={<MatchDetails />} />
+      <Route path="matches/*" element={<MatchesRouting />} />
     </Routes>
   );
 }

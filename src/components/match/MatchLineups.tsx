@@ -3,7 +3,7 @@ import { Divider, Space, Typography } from "antd";
 import {
   MatchDetails_MatchDetailsQuery,
   Position,
-} from "../../../graphql-generated";
+} from "../../graphql-generated";
 
 type Lineup = NonNullable<
   MatchDetails_MatchDetailsQuery["match"]
