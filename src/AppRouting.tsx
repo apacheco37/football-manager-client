@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom";
 
 import Login from "./routes/login/Login";
 import Signup from "./routes/signup/Signup";
-import Dashboard from "./components/Dashboard";
-import Home from "./components/Home";
+import Dashboard from "./routes/dashboard/Dashboard";
+import Home from "./routes/home/Home";
 import MatchDetails from "./components/match/MatchDetails/MatchDetails";
 import MatchList from "./components/match/MatchList";
 import PlayerDetails from "./components/player/PlayerDetails";
