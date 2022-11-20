@@ -4,7 +4,7 @@ import { Menu, Typography } from "antd";
 import { MenuItemType } from "rc-menu/lib/interface";
 import styled from "@emotion/styled";
 
-import UserContext from "../contexts/UserContext";
+import UserContext from "contexts/UserContext";
 
 const StyledText = styled(Typography.Text)({
   display: "flex",

@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom";
+
 import PlayerDetails from "./PlayerDetails/PlayerDetails";
 import PlayerList from "./PlayersList/PlayerList";
 

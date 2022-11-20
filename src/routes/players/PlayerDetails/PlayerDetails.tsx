@@ -1,7 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { Space, Typography } from "antd";
 import { useParams } from "react-router-dom";
-import { PlayerDetails_PlayerDocument } from "../../../graphql-generated";
+
+import { PlayerDetails_PlayerDocument } from "graphql-generated";
 
 export default function PlayerDetails() {
   const { playerID } = useParams();

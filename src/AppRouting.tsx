@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 
-import Login from "./routes/login/Login";
-import Signup from "./routes/signup/Signup";
-import Dashboard from "./routes/dashboard/Dashboard";
-import Home from "./routes/home/Home";
-import PlayersRouting from "./routes/players/PlayersRouting";
-import MatchesRouting from "./routes/matches/MatchesRouting";
+import Login from "routes/login/Login";
+import Signup from "routes/signup/Signup";
+import Dashboard from "routes/dashboard/Dashboard";
+import Home from "routes/home/Home";
+import PlayersRouting from "routes/players/PlayersRouting";
+import MatchesRouting from "routes/matches/MatchesRouting";
 
 function AppRouting() {
   return (

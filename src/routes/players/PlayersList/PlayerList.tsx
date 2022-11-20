@@ -4,11 +4,11 @@ import { ColumnsType } from "antd/lib/table";
 import { useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
 
-import UserContext from "../../../contexts/UserContext";
+import UserContext from "contexts/UserContext";
 import {
   PlayerList_PlayersDocument,
   PlayerList_PlayersQuery,
-} from "../../../graphql-generated";
+} from "graphql-generated";
 
 type PlayerType = PlayerList_PlayersQuery["players"][number];
 

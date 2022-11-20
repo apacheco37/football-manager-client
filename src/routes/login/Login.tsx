@@ -5,8 +5,8 @@ import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
-import { Login_LoginDocument } from "../../graphql-generated";
-import UserContext from "../../contexts/UserContext";
+import { Login_LoginDocument } from "graphql-generated";
+import UserContext from "contexts/UserContext";
 
 const StyledForm = styled(Form)({
   maxWidth: "300px",

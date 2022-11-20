@@ -5,10 +5,10 @@ import { TabsProps } from "antd/lib/tabs";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
-import { MatchDetails_MatchDetailsDocument } from "../../../graphql-generated";
-import MatchEvents from "../../../components/match/MatchEvents";
-import MatchLineup from "../../../components/match/MatchLineups";
-import MatchRatings from "../../../components/match/MatchRatings";
+import { MatchDetails_MatchDetailsDocument } from "graphql-generated";
+import MatchEvents from "components/match/MatchEvents";
+import MatchLineup from "components/match/MatchLineups";
+import MatchRatings from "components/match/MatchRatings";
 
 const StyledSpace = styled(Space)({
   display: "flex",

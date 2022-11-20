@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Divider, Space, Typography } from "antd";
 
-import { MatchDetails_MatchDetailsQuery } from "../../graphql-generated";
+import { MatchDetails_MatchDetailsQuery } from "graphql-generated";
 
 type Ratings = NonNullable<
   MatchDetails_MatchDetailsQuery["match"]

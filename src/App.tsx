@@ -4,9 +4,9 @@ import { useQuery } from "@apollo/client";
 import { Layout } from "antd";
 
 import AppRouting from "./AppRouting";
-import Sidebar from "./components/Sidebar";
-import { App_GetLoggedUserDocument } from "./graphql-generated";
-import UserContext, { User } from "./contexts/UserContext";
+import Sidebar from "components/Sidebar";
+import { App_GetLoggedUserDocument } from "graphql-generated";
+import UserContext, { User } from "contexts/UserContext";
 
 const { Content, Sider } = Layout;
 

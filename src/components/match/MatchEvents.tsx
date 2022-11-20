@@ -1,9 +1,6 @@
 import { Card, Space, Typography } from "antd";
 
-import {
-  MatchDetails_MatchDetailsQuery,
-  MatchTeam,
-} from "../../graphql-generated";
+import { MatchDetails_MatchDetailsQuery, MatchTeam } from "graphql-generated";
 
 type Event = NonNullable<
   MatchDetails_MatchDetailsQuery["match"]
