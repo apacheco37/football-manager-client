@@ -9,6 +9,7 @@ import {
   MatchList_TeamMatchesDocument,
   MatchList_TeamMatchesQuery,
 } from "graphql-generated";
+import Loading from "components/Loading";
 
 type MatchType = NonNullable<
   MatchList_TeamMatchesQuery["team"]
@@ -43,13 +44,15 @@ export default function MatchList() {
     []
   );
 
-  if (loading) return null;
+  if (loading) return <Loading />;
 
-  return data?.team ? (
+  if (!data?.team) return null;
+
+  return (
     <Table
       dataSource={data.team.matches}
       columns={columns}
       rowKey={(record) => record.id}
     />
-  ) : null;
+  );
 }

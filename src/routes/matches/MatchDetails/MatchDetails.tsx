@@ -9,6 +9,7 @@ import { MatchDetails_MatchDetailsDocument } from "graphql-generated";
 import MatchEvents from "components/match/MatchEvents";
 import MatchLineup from "components/match/MatchLineups";
 import MatchRatings from "components/match/MatchRatings";
+import Loading from "components/Loading";
 
 const StyledSpace = styled(Space)({
   display: "flex",
@@ -92,8 +93,7 @@ export default function MatchDetails() {
     ]
   );
 
-  // TODO return loading state
-  if (loading) return null;
+  if (loading) return <Loading />;
 
   // TODO return not found page
   if (!match) return null;

@@ -7,6 +7,7 @@ import AppRouting from "./AppRouting";
 import Sidebar from "components/Sidebar";
 import { App_GetLoggedUserDocument } from "graphql-generated";
 import UserContext, { User } from "contexts/UserContext";
+import Loading from "components/Loading";
 
 const { Content, Sider } = Layout;
 
@@ -43,7 +44,7 @@ export default function App() {
     onCompleted: (data) => setLoggedUser(data.user),
   });
 
-  if (loading) return null;
+  if (loading) return <Loading />;
 
   return (
     <UserContext.Provider value={{ user: loggedUser, setUser: setLoggedUser }}>

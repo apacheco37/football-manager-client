@@ -9,6 +9,7 @@ import {
   PlayerList_PlayersDocument,
   PlayerList_PlayersQuery,
 } from "graphql-generated";
+import Loading from "components/Loading";
 
 type PlayerType = PlayerList_PlayersQuery["players"][number];
 
@@ -45,7 +46,7 @@ export default function PlayerList() {
     []
   );
 
-  if (loading) return null;
+  if (loading) return <Loading />;
 
   return (
     <Table

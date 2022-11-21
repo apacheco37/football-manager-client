@@ -3,6 +3,7 @@ import { Space, Typography } from "antd";
 import { useParams } from "react-router-dom";
 
 import { PlayerDetails_PlayerDocument } from "graphql-generated";
+import Loading from "components/Loading";
 
 export default function PlayerDetails() {
   const { playerID } = useParams();
@@ -17,9 +18,11 @@ export default function PlayerDetails() {
       : { skip: true }
   );
 
-  if (loading) return null;
+  if (loading) return <Loading />;
 
-  return player ? (
+  if (!player) return null;
+
+  return (
     <Space direction="vertical">
       <Typography.Title level={2}>
         {`${player.firstName} ${player.lastName}`}
@@ -34,5 +37,5 @@ export default function PlayerDetails() {
       <Typography.Text>Defender: {player.defender}</Typography.Text>
       <Typography.Text>Goalkeeper: {player.goalkeeper}</Typography.Text>
     </Space>
-  ) : null;
+  );
 }
