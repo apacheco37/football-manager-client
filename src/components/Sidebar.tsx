@@ -1,19 +1,27 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, Typography } from "antd";
+import { Button, Menu, Typography } from "antd";
 import { MenuItemType } from "rc-menu/lib/interface";
 import styled from "@emotion/styled";
 
 import UserContext from "contexts/UserContext";
+import { useMutation } from "@apollo/client";
+import { Sidebar_LogoutDocument } from "graphql-generated";
 
 const StyledText = styled(Typography.Text)({
   display: "flex",
   margin: "1rem",
 });
 
+const StyledButton = styled(Button)({
+  marginBottom: "1rem",
+  marginLeft: "1rem",
+});
+
 export default function Sidebar() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const [logout] = useMutation(Sidebar_LogoutDocument);
 
   const notLoggedUserOptions: MenuItemType[] = [
     {
@@ -51,11 +59,18 @@ export default function Sidebar() {
     },
   ];
 
+  const handleLogout = () => {
+    logout();
+    setUser(null);
+    navigate("/");
+  };
+
   return (
     <>
       <StyledText>
         {user ? `Welcome ${user.username}!` : "User not authenticated"}
       </StyledText>
+      {user && <StyledButton onClick={handleLogout}>Log Out</StyledButton>}
       <Menu items={user ? loggedUserOptions : notLoggedUserOptions}></Menu>
     </>
   );
