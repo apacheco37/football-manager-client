@@ -1,65 +1,61 @@
-import { createContext, Dispatch, useState } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
 import { useQuery } from "@apollo/client";
+import { Layout } from "antd";
 
 import AppRouting from "./AppRouting";
-import Sidebar from "./components/Sidebar";
-import { App_GetLoggedUserDocument } from "./graphql-generated";
+import Sidebar from "components/Sidebar";
+import { App_GetLoggedUserDocument } from "graphql-generated";
+import UserContext, { User } from "contexts/UserContext";
+import Loading from "components/Loading";
 
-const AppDiv = styled.div({
-  textAlign: "center",
-  display: "flex",
-});
+const { Content, Sider } = Layout;
 
-const Content = styled.header({
-  backgroundColor: "#282c34",
+const StyledLayout = styled(Layout)({
   minHeight: "100vh",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "calc(10px + 2vmin)",
-  color: "white",
-  width: "100%",
 });
 
-interface UserContextProps {
-  user: User | null;
-  setUser: Dispatch<React.SetStateAction<User | null>>;
-}
+const StyledContent = styled(Content)({
+  padding: "2rem",
+});
 
-export const UserContext = createContext({} as UserContextProps);
+// const AppDiv = styled.div({
+//   textAlign: "center",
+//   display: "flex",
+// });
 
-interface User {
-  id: string;
-  username: string;
-  team: Team | null;
-}
+// const Content = styled.header({
+//   backgroundColor: "#282c34",
+//   minHeight: "100vh",
+//   display: "flex",
+//   flexDirection: "column",
+//   alignItems: "center",
+//   justifyContent: "center",
+//   fontSize: "calc(10px + 2vmin)",
+//   color: "white",
+//   width: "100%",
+// });
 
-interface Team {
-  id: string;
-  name: string;
-}
-
-function App() {
+export default function App() {
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
+  const [collapsed, setCollapsed] = useState(false);
 
   const { loading } = useQuery(App_GetLoggedUserDocument, {
     onCompleted: (data) => setLoggedUser(data.user),
   });
 
-  if (loading) return null;
+  if (loading) return <Loading />;
 
   return (
     <UserContext.Provider value={{ user: loggedUser, setUser: setLoggedUser }}>
-      <AppDiv>
-        <Sidebar />
-        <Content>
+      <StyledLayout>
+        <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
+          <Sidebar />
+        </Sider>
+        <StyledContent>
           <AppRouting />
-        </Content>
-      </AppDiv>
+        </StyledContent>
+      </StyledLayout>
     </UserContext.Provider>
   );
 }
-
-export default App;

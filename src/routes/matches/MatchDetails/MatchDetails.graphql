@@ -1,0 +1,51 @@
+query MatchDetails_MatchDetails($matchID: ID!) {
+  match(id: $matchID) {
+    homeTeam {
+      name
+    }
+    awayTeam {
+      name
+    }
+    events {
+      minute
+      type
+      team
+      players {
+        firstName
+        lastName
+      }
+    }
+    homeRatings {
+      attack
+      midfield
+      defense
+      goalkeeping
+    }
+    awayRatings {
+      attack
+      midfield
+      defense
+      goalkeeping
+    }
+    homeLineup {
+      position
+      player {
+        firstName
+        lastName
+      }
+    }
+    awayLineup {
+      position
+      player {
+        firstName
+        lastName
+      }
+    }
+    summary {
+      homeGoals
+      awayGoals
+      homeCards
+      awayCards
+    }
+  }
+}

@@ -1,0 +1,3 @@
+mutation Sidebar_Logout {
+  logout
+}

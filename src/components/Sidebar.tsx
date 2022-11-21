@@ -1,84 +1,77 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Menu, Typography } from "antd";
+import { MenuItemType } from "rc-menu/lib/interface";
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
 
-import { UserContext } from "../App";
+import UserContext from "contexts/UserContext";
+import { useMutation } from "@apollo/client";
+import { Sidebar_LogoutDocument } from "graphql-generated";
 
-const Menu = styled.div({
+const StyledText = styled(Typography.Text)({
   display: "flex",
-  flexDirection: "column",
-});
-
-const MenuItem = styled.p({
   margin: "1rem",
 });
 
-function Sidebar() {
-  const { user } = useContext(UserContext);
+const StyledButton = styled(Button)({
+  marginBottom: "1rem",
+  marginLeft: "1rem",
+});
 
-  const notLoggedUserOptions = [
+export default function Sidebar() {
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [logout] = useMutation(Sidebar_LogoutDocument);
+
+  const notLoggedUserOptions: MenuItemType[] = [
     {
-      name: "Home",
-      link: "/",
+      key: "home",
+      label: "Home",
+      onClick: () => navigate("/"),
     },
     {
-      name: "Login",
-      link: "/login",
+      key: "login",
+      label: "Login",
+      onClick: () => navigate("/login"),
     },
     {
-      name: "Signup",
-      link: "/signup",
-    },
-  ];
-  const loggedUserOptions = [
-    {
-      name: "Dashboard",
-      link: "/dashboard",
-    },
-    {
-      name: "Players",
-      link: "/players",
-    },
-    {
-      name: "Matches",
-      link: "/matches",
+      key: "signup",
+      label: "Signup",
+      onClick: () => navigate("/signup"),
     },
   ];
 
-  const menuItems = user
-    ? loggedUserOptions.map((option, index) => (
-        <MenuItem key={index}>
-          <NavLink
-            to={option.link}
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-              textDecoration: "none",
-            })}
-          >
-            {option.name}
-          </NavLink>
-        </MenuItem>
-      ))
-    : notLoggedUserOptions.map((option, index) => (
-        <MenuItem key={index}>
-          <NavLink
-            to={option.link}
-            style={({ isActive }) => ({
-              fontWeight: isActive ? "bold" : "normal",
-              textDecoration: "none",
-            })}
-          >
-            {option.name}
-          </NavLink>
-        </MenuItem>
-      ));
+  const loggedUserOptions: MenuItemType[] = [
+    {
+      key: "dashboard",
+      label: "Dashboard",
+      onClick: () => navigate("/dashboard"),
+    },
+    {
+      key: "players",
+      label: "Players",
+      onClick: () => navigate("/players"),
+    },
+    {
+      key: "matches",
+      label: "Matches",
+      onClick: () => navigate("/matches"),
+    },
+  ];
+
+  const handleLogout = () => {
+    logout();
+    setUser(null);
+    navigate("/");
+  };
 
   return (
-    <Menu>
-      {user ? <p>Welcome {user.username}!</p> : <p>User not authenticated</p>}
-      {menuItems}
-    </Menu>
+    <>
+      <StyledText>
+        {user ? `Welcome ${user.username}!` : "User not authenticated"}
+      </StyledText>
+      {user && <StyledButton onClick={handleLogout}>Log Out</StyledButton>}
+      <Menu items={user ? loggedUserOptions : notLoggedUserOptions}></Menu>
+    </>
   );
 }
-
-export default Sidebar;
