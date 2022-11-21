@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "@emotion/styled";
 import { useMutation } from "@apollo/client";
-import { Button, Form, Input } from "antd";
+import { Alert, Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -18,9 +18,11 @@ interface FormFields {
 }
 
 export default function Login() {
-  const [login] = useMutation(Login_LoginDocument);
+  const [login, { loading }] = useMutation(Login_LoginDocument);
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const [showError, setShowError] = useState<boolean>(false);
 
   function handleLogin(values: FormFields) {
     login({
@@ -31,6 +33,8 @@ export default function Login() {
         if (user) {
           setUser(user);
           navigate(`/dashboard`, { replace: true });
+        } else {
+          setShowError(true);
         }
       },
     });
@@ -59,10 +63,24 @@ export default function Login() {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={loading}
+          disabled={loading}
+        >
           Log in
         </Button>
       </Form.Item>
+
+      {showError && (
+        <Alert
+          message="Incorrect credentials"
+          type="error"
+          closable
+          onClose={() => setShowError(false)}
+        />
+      )}
     </StyledForm>
   );
 }
